@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rohanpaithankar.project">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,6 +34,8 @@
         <activity android:name=".SignupActivity"/>
         <activity android:name=".Tablayout"
             android:theme="@style/Mytheme"/>
+        <activity android:name=".MainActivityBarcode"/>
+        <activity android:name=".BarcodeCaptureActivity"/>
     </application>
 
 </manifest>

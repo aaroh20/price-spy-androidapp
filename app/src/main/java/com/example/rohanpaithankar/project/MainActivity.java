@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         b1=(Button)findViewById(R.id.Search);
-        b2=(Button)findViewById(R.id.category);
+        b2=(Button)findViewById(R.id.barcode);
         t=(TextView)findViewById(R.id.tap);
         b1.setOnClickListener(this);
+        b2.setOnClickListener(this);
         Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
         b1.startAnimation(animation);
         b2.startAnimation(animation);
@@ -42,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
           Intent i=new Intent(getApplicationContext(),Tablayout.class);
             startActivity(i);
 
+        }
+        else if(v.getId()==R.id.barcode){
+            Intent i1=new Intent(getApplicationContext(),MainActivityBarcode.class);
+            startActivity(i1);
         }
     }
 }
