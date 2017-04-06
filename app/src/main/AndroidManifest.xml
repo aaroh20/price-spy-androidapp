@@ -26,6 +26,10 @@
             android:name=".MainActivity"
             android:label="@string/app_name"></activity>
         <activity android:name=".search_activity"></activity>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".SignupActivity"/>
+        <activity android:name=".Tablayout"
+            android:theme="@style/Mytheme"/>
     </application>
 
 </manifest>

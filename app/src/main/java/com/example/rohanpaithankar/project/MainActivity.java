@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void onClick(View v){
         if(v.getId()==R.id.Search){
-          Intent i=new Intent(getApplicationContext(),search_activity.class);
+          Intent i=new Intent(getApplicationContext(),Tablayout.class);
             startActivity(i);
 
         }
