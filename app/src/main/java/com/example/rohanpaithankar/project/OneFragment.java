@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -56,8 +57,9 @@ public class OneFragment extends Fragment{
 
     ProgressBar progressBar;
     //TextView responseView;
-    Button queryButton;
+    Button queryButton,buy;
     EditText product;
+    WebView web;
     String response,query,id;
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -89,6 +91,8 @@ public class OneFragment extends Fragment{
                 //responseView=(TextView)view.findViewById(R.id.responseView);
                 product=(EditText)view.findViewById(R.id.product);
                 queryButton = (Button)view.findViewById(R.id.queryButton);
+                buy=(Button)view.findViewById(R.id.buy);
+                web=(WebView)view.findViewById(R.id.webview);
 
                 contactList = new ArrayList<>();
 
@@ -179,17 +183,23 @@ public class OneFragment extends Fragment{
                             JSONObject jsonObj = new JSONObject(jsonStr);
 
                             // Getting JSON Array node
-                            JSONArray contacts = jsonObj.getJSONArray("data");
+
+                            JSONArray contacts;
+
+                            contacts= jsonObj.getJSONArray("data");
+
+
 
                             // looping through All Contacts
                             for (int i = 0; i < contacts.length(); i++) {
                                 JSONObject c = contacts.getJSONObject(i);
 
                                 String id = c.getString("PriceTree_Id");
-                                String name = c.getString("Seller_Name");
-                                String email = c.getString("Best_Price");
-                                String address = c.getString("In_Stock");
-                                String gender = c.getString("Product_Name");
+                                String sname = c.getString("Seller_Name");
+                                String bp = c.getString("Best_Price");
+                                String stock = c.getString("In_Stock");
+                                String pname = c.getString("Product_Name");
+                                String uri=c.getString("Uri");
 
                                 // Phone node is JSON Object
                                 //JSONObject phone = c.getJSONObject("phone");
@@ -201,10 +211,11 @@ public class OneFragment extends Fragment{
                                 HashMap<String, String> contact = new HashMap<>();
 
                                 // adding each child node to HashMap key => value
-                                contact.put("id", id);
-                                contact.put("seller name", name);
-                                contact.put("price", email);
-                                contact.put("stock", address);
+                                contact.put("pname", pname);
+                                contact.put("seller name", sname);
+                                contact.put("price", bp);
+                                contact.put("stock", stock);
+                                contact.put("URL", uri);
 
                                 // adding contact to contact list
                                 contactList.add(contact);
@@ -262,12 +273,17 @@ public class OneFragment extends Fragment{
             //responseView.setText(response1);
             ListAdapter adapter = new SimpleAdapter(
                     getActivity(), contactList,
-                    R.layout.list_item, new String[]{"id", "seller name",
-                    "price"}, new int[]{R.id.name,
-                    R.id.email, R.id.address});
+                    R.layout.activity_list_item, new String[]{"pname", "seller name",
+                    "price","stock"}, new int[]{R.id.productname,
+                    R.id.bestprice,R.id.seller,R.id.stock});
+
+
+
+
 
 
             lv.setAdapter(adapter);
+
         }
     }
  
